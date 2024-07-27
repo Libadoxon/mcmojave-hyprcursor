@@ -1,0 +1,7 @@
+resize_algorithm = none
+
+hotspot_x = 0.67
+hotspot_y = 0.67
+
+define_override = cross
+define_size = 0,crosshair.svg

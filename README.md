@@ -1,11 +1,11 @@
 # McMojave-hyprcursor
-The [McMojave cursor theme](https://github.com/vinceliuice/McMojave-cursors), created by [vinceliuice](https://github.com/vinceliuice) and inspired by MacOs.
+The [McMojave cursor theme](https://github.com/vinceliuice/McMojave-cursors), created by [vinceliuice](https://github.com/vinceliuice) and ported to `hyprcursor`.
 
 ## Installation
 #### General
-Downlaod the latest [release](ttps://github.com/Libadoxon/mcmojave-hyprcursor/releases) and the place the files into `~/.local/share/icons` or `~/.icons`. After that set the `HYPRCURSOR_THEME` variable to `McMojave-Light` or `McMojave-Dark` in your `hyprland` config
+Downlaod the latest [release](ttps://github.com/Libadoxon/mcmojave-hyprcursor/releases) and the place the files into `~/.local/share/icons` or `~/.icons`. After that set the `HYPRCURSOR_THEME` variable to `McMojave` or `McMojave` in your `hyprland` config
 ```hyprlang
-env = HYPRCURSOR_THEME,McMojave-Light
+env = HYPRCURSOR_THEME,McMojave
 ```
 
 #### NixOs
@@ -42,7 +42,7 @@ After that install the wanted theme in your `configuration.nix` or `home.nix`
 { pkgs, inputs, ... }: {
   ...
   environment.systemPackages = [
-      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.mcmojave-hyprcursor-light
+      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   ...
 }
@@ -52,7 +52,7 @@ After that install the wanted theme in your `configuration.nix` or `home.nix`
 { pkgs, inputs, ... }: {
   ...
   home.packages = [
-      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.mcmojave-hyprcursor-dark
+      inputs.mcmojave-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
   ...
 }
@@ -62,7 +62,7 @@ Set the environment variable so `hyprcursor` knows to use the the newly added th
 # configuration.nix
 { ... }: {
   ...
-  environment.variables.HYPRCURSOR_THEME = "McMojave-Light";
+  environment.variables.HYPRCURSOR_THEME = "McMojave";
   ...
 }
 ```
@@ -70,8 +70,11 @@ Set the environment variable so `hyprcursor` knows to use the the newly added th
 # home.nix
 { ... }: {
   ...
-  home.sessionVariables.HYPRCURSOR_THEME = "McMojave-Dark";
+  home.sessionVariables.HYPRCURSOR_THEME = "McMojave";
   ...
 }
 ```
-or by appending `env = HYPRCURSOR_THEME,rose-pine-hyprcursor` to your `hyprland` config
+or by appending `env = HYPRCURSOR_THEME,McMojave` to your `hyprland` config
+
+## Preview
+![McMojave](preview.png)

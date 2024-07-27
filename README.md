@@ -1,6 +1,9 @@
 # McMojave-hyprcursor
 The [McMojave cursor theme](https://github.com/vinceliuice/McMojave-cursors), created by [vinceliuice](https://github.com/vinceliuice) and ported to `hyprcursor`.
 
+## Preview
+![McMojave](preview.png)
+
 ## Installation
 #### General
 Downlaod the latest [release](ttps://github.com/Libadoxon/mcmojave-hyprcursor/releases) and the place the files into `~/.local/share/icons` or `~/.icons`. After that set the `HYPRCURSOR_THEME` variable to `McMojave` or `McMojave` in your `hyprland` config
@@ -75,6 +78,3 @@ Set the environment variable so `hyprcursor` knows to use the the newly added th
 }
 ```
 or by appending `env = HYPRCURSOR_THEME,McMojave` to your `hyprland` config
-
-## Preview
-![McMojave](preview.png)

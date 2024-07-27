@@ -3,33 +3,35 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    utils.url = "github:numtide/flake-utils";
+    systems.url = "github:nix-systems/default-linux";
 
-    hyprlang = {
-      url = "github:hyprwm/hyprlang";
+    hyprcursor = {
+      url = "github:hyprwm/hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
   outputs =
     {
+      self,
       nixpkgs,
-      utils,
-      hyprlang,
-    }:
-    utils.lib.eachDefaultSystem (
-      system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-      in
+      hyprcursor,
+      systems,
+      ...
+    }@inputs:
+    let
+      pkgs = nixpkgs;
+      eachSystem = pkgs.lib.genAttrs (import systems);
+    in
+    {
+      packages = eachSystem (system: {
+        default = self.packages.${system}.mcmojave-hyprcursor;
 
-      {
-        packages = {
-          mcmojave-hyprcursor-light = pkgs.callPackage ./nix/light.nix { inherit pkgs; };
-          mcmojave-hyprcursor-dark = pkgs.callPackage ./nix/dark.nix { inherit pkgs; };
+        mcmojave-hyprcursor = inputs.nixpkgs.legacyPackages.${system}.callPackage ./nix {
+          inherit hyprcursor;
         };
+      });
 
-        formatter = nixpkgs.${system}.nixpkgs-fmt;
-      }
-    );
+      formatter = eachSystem (system: nixpkgs.${system}.nixpkgs-format);
+    };
 }

@@ -1,23 +1,20 @@
 {
   lib,
   stdenv,
-  fetchFromGitHub,
+  hyprcursor,
 }:
-stdenv.mkDerivation (finalAttrs: {
+stdenv.mkDerivation {
   pname = "mcmojave-hyprcursor";
   version = "0.1";
-  src = fetchFromGitHub {
-    owner = "libadoxon";
-    repo = "mcmojave-hyprcursor";
-    rev = "d2c0e6802f0ed1e7c638bb27b5aa8587b578d083";
-    sha256 = "sha256-ArUX5qlqAXUqcRqHz4QxXy3KgkfasTPA/Qwf6D2kV0U=";
-  };
+  src = ../.;
+
+  nativeBuildInputs = [ hyprcursor.packages.${stdenv.hostPlatform.system}.hyprcursor ];
 
   installPhase = ''
     runHook preInstall
 
     mkdir -p $out/share/icons/mcmojave-hyprcursor
-    cp -R . $out/share/icons/mcmojave-hyprcursor/
+    hyprcursor-util --create $src -o $out/share/icons/mcmojave-hyprcursor/
 
     runHook postInstall
   '';
@@ -29,4 +26,4 @@ stdenv.mkDerivation (finalAttrs: {
     license = licenses.gpl3;
     maintainers = with maintainers; [ libadoxon ];
   };
-})
+}

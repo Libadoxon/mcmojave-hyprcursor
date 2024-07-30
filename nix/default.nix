@@ -13,8 +13,8 @@ stdenv.mkDerivation {
   installPhase = ''
     runHook preInstall
 
-    mkdir -p $out/share/icons/mcmojave-hyprcursor
-    hyprcursor-util --create $src -o $out/share/icons/mcmojave-hyprcursor/
+    mkdir -p $out/share/icons/
+    hyprcursor-util --create $src -o $out/share/icons/
 
     runHook postInstall
   '';

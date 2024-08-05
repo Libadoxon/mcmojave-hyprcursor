@@ -61,7 +61,7 @@ After that install the wanted theme in your `configuration.nix` or `home.nix`
 }
 ```
 Set the environment variable so `hyprcursor` knows to use the the newly added theme. You can do this in your `NixOs` configuration
-```
+```nix
 # configuration.nix
 { ... }: {
   ...
@@ -69,7 +69,7 @@ Set the environment variable so `hyprcursor` knows to use the the newly added th
   ...
 }
 ```
-```
+```nix
 # home.nix
 { ... }: {
   ...
